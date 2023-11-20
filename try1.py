@@ -17,7 +17,7 @@ Ar={'sigma':3.401,'epsilon':0.978638}
 He={'sigma':2.556,'epsilon':0.08368}
 bolt=8.314462618e-3  
 
-numbsit=[269]
+numbsit=[26]
 lab=['Ar']
 box=np.array([[215.4434],[215.4434],[215.4434]])
 rad=1.88
@@ -134,7 +134,7 @@ class model:
             cho1=np.random.randint(0,len(self.config))
             cho2=np.random.randint(0,len(self.config[cho1].T))
             cho3=np.random.randint(0,len(self.size))
-            cho4=steplength*float(np.random.rand(),5)
+            cho4=steplength*round(np.random.rand(),5)
             oldE=self.configE(1)
             self.config[cho1][cho3,cho2]=self.config[cho1][cho3,cho2]+(cho0*cho4*self.size[cho3])/100
             if self.checkconfig():
