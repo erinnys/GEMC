@@ -128,21 +128,21 @@ class model:
     def volchange(self,length):
         cho=np.random.choice([1,-1])*(length/100)*round(np.random.rand(),5)
         oldE=self.configE(1,0)+self.configE(1,1)
-        mod.latvec[0]*(1+cho)
-        mod.latvec[1]*(1-cho)
+        self.latvec[0]=self.latvec[0]*(1+cho)
+        self.latvec[1]=self.latvec[1]*(1-cho)
         for i in range(len(self.config[0])):
             self.config[0][i]=self.config[0][i]*(1+cho)
         for i in range(len(self.config[1])):
             self.config[1][i]=self.config[1][i]*(1-cho)
-        if 1<round(((self.latvec[0][0][0])**(3*self.tot[0])*(self.latvec[1][0][0])**(3*self.tot[1])/((self.latvec[0][0][0]/(1+cho))**(3*self.tot[0])*(self.latvec[1][0][0]/(1+cho))**(3*self.tot[1])))*np.exp(-self.b*(self.configE(1,0)+(self.configE(1,1))-oldE)),5):
+        if 1<((self.latvec[0][0][0])**(3*self.tot[0])*(self.latvec[1][0][0])**(3*self.tot[1])/((self.latvec[0][0][0]/(1+cho))**(3*self.tot[0])*(self.latvec[1][0][0]/(1+cho))**(3*self.tot[1])))*np.exp(-self.b*(self.configE(1,0)+self.configE(1,1)-oldE)):
             pass
         else:
-            if np.random.random()<round(((self.latvec[0][0][0])**(3*self.tot[0])*(self.latvec[1][0][0])**(3*self.tot[1])/((self.latvec[0][0][0]/(1+cho))**(3*self.tot[0])*(self.latvec[1][0][0]/(1+cho))**(3*self.tot[1])))*np.exp(-self.b*(self.configE(1,0)+(self.configE(1,1))-oldE)),5):
+            if np.random.random()<((self.latvec[0][0][0])**(3*self.tot[0])*(self.latvec[1][0][0])**(3*self.tot[1])/((self.latvec[0][0][0]/(1+cho))**(3*self.tot[0])*(self.latvec[1][0][0]/(1+cho))**(3*self.tot[1])))*np.exp(-self.b*(self.configE(1,0)+self.configE(1,1)-oldE)):
                 pass
             else:
                 print('VNO')
-                mod.latvec[0]/(1+cho)
-                mod.latvec[1]/(1-cho)
+                self.latvec[0]=self.latvec[0]/(1+cho)
+                self.latvec[1]=self.latvec[1]/(1-cho)
                 for i in range(len(self.config[0])):
                     self.config[0][i]=self.config[0][i]/(1+cho)
                 for i in range(len(self.config[1])):
